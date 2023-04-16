@@ -1,32 +1,38 @@
-import React, { ReactNode } from 'react'
-import Link from 'next/link'
-import Head from 'next/head'
+import { GoogleLogin } from "react-google-login"; 
+import { Typography, Container, Box } from "@mui/material";
 
-type Props = {
-  children?: ReactNode
-  title?: string
-}
+const Login = () => {
+  const responseGoogle = (response: any) => {
+    console.log(response);
+  };
 
-const Layout = ({ children, title = 'This is the default title' }: Props) => (
-  <div>
-    <Head>
-      <title>{title}</title>
-      <meta charSet="utf-8" />
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-    </Head>
-    <header>
-      <nav>
-        <Link href="/">Home</Link> | <Link href="/about">About</Link> |{' '}
-        <Link href="/users">Users List</Link> |{' '}
-        <a href="/api/users">Users API</a>
-      </nav>
-    </header>
-    {children}
-    <footer>
-      <hr />
-      <span>I'm here to stay (Footer)</span>
-    </footer>
-  </div>
-)
+  const onFailure = (error: any) => {
+    console.log(error);
+  };
 
-export default Layout
+  return (
+    <Container maxWidth="sm">
+      <Box
+        sx={{
+          mt: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Typography component="h1" variant="h5">
+          Iniciar sesión con Google
+        </Typography>
+        <GoogleLogin
+          clientId="TU_ID_DE_CLIENTE_DE_GOOGLE"
+          buttonText="Iniciar sesión con Google"
+          onSuccess={responseGoogle}
+          onFailure={onFailure}
+          cookiePolicy={"single_host_origin"}
+        />
+      </Box>
+    </Container>
+  );
+};
+
+export default Login;
