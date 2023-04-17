@@ -1,13 +1,48 @@
-import Link from 'next/link'
-import Layout from '../components/Layout'
+import React, { useEffect, useContext } from 'react'
+import AppLayout from '../components/layout/AppLayout'
+import CreatePost from '../components/post/CreatePost'
+import PostsList from '../components/post/PostsList'
+import { type GetStaticProps } from 'next'
+import { type PostsPageProps } from '../types/Post'
+import getPostsService from '../services/post/getPostsService'
+import usePostsListContext from '../hooks/post/usePostsListContext'
+import { PostsListContextProvider } from '../context/PostsListContext'
+const IndexPage = ({ posts: initialPosts }: PostsPageProps): JSX.Element => {
+  const { posts, onAddPost, setPosts } = usePostsListContext()
 
-const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">About</Link>
-    </p>
-  </Layout>
-)
+  useEffect(() => {
+    if (initialPosts) setPosts(initialPosts)
+  }, [initialPosts])
 
-export default IndexPage
+  return (
+    <AppLayout title="Home | Next.js + TypeScript Example">
+      <CreatePost />
+      <PostsList posts={posts} />
+    </AppLayout>
+  )
+}
+
+export const getStaticProps: GetStaticProps<PostsPageProps> = async (
+  context
+) => {
+  try {
+    const posts = await getPostsService()
+
+    return {
+      props: { posts }
+    }
+  } catch (error) {
+    console.error({ error })
+    throw error
+  }
+}
+
+export default function IndexPageWithPostsProvider (
+  props: PostsPageProps
+): React.FC<PostsPageProps> {
+  return (
+    <PostsListContextProvider>
+      <IndexPage {...props} />
+    </PostsListContextProvider>
+  )
+}
