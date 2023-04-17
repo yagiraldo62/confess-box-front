@@ -25,7 +25,7 @@ export default function UserAvatar ({
   const classes = useStyles()
   const { user } = useAuth()
   const dispatch = useDispatch()
-  const currentUser = altUser || user
+  const currentUser = altUser ?? user
   if (currentUser == null) return <></>
 
   const handleLogout = () => {

@@ -6,7 +6,6 @@ import {
   ListItem,
   ListItemText,
   Typography,
-  Button,
   Collapse
 } from '@mui/material'
 import { type Comment } from '../../types/Post'

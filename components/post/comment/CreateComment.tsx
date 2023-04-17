@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useFormik } from 'formik'
 import { makeStyles } from '@mui/styles'
-import { TextField, IconButton, CircularProgress } from '@mui/material'
+import { IconButton, CircularProgress } from '@mui/material'
 import { useNoBorderStyles } from '../CreatePost'
 import SendIcon from '@mui/icons-material/Send'
 import RequiresAuth from '../../auth/guard/RequiresAuth'
@@ -30,7 +30,7 @@ function CreateComment ({ post }: { post: Post }): JSX.Element {
   const classes = useStyles()
   const classesNoBorder = useNoBorderStyles()
   const { onAddComment } = usePostsListContext()
-  const { isLoading, error, createComment } = useCreateComment()
+  const { isLoading, createComment } = useCreateComment()
 
   const formik = useFormik({
     initialValues: {
