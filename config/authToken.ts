@@ -1,10 +1,15 @@
+// eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export class AuthToken {
-  public static setToken(token: string) {
-    localStorage.setItem("token", token);
+  public static storageEnabled (): boolean {
+    return typeof window !== 'undefined'
   }
 
-  public static getToken(): string | undefined {
-    const token = localStorage.getItem("token");
-    return token;
+  public static setToken (token: string): void {
+    localStorage.setItem('token', token)
+  }
+
+  public static getToken (): string {
+    const token = localStorage.getItem('token')
+    return token
   }
 }
