@@ -5,7 +5,7 @@ export const loginWithGoogleUrl =
   typeof process.env.API_URL === 'string'
     ? `${process.env.API_URL}/auth/google`
     : ''
-export default function RequiresAuth ({ children }): React.FC {
+export default function RequiresAuth ({ children }: { children: JSX.Element }): JSX.Element {
   const { authenticated } = useAuth()
 
   if (!authenticated) {

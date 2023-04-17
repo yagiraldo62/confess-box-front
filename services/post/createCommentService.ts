@@ -2,8 +2,8 @@ import { type AxiosResponse } from 'axios'
 import apiClient from '../../config/apiClient'
 import { type Comment } from '../../types/Post'
 
-const createCommentService = async (comment: CreateComment): Promise<Comment> =>
-  await new Promise<Comment>(async (resolve, reject): Comment => {
+const createCommentService = (comment: CreateComment): Promise<Comment> =>
+ new Promise<Comment>(async (resolve, reject): Comment => {
     try {
       const response: AxiosResponse<Comment> = await apiClient.post(
         '/comment',

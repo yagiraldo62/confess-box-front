@@ -1,16 +1,11 @@
 import React from 'react'
 import moment from 'moment'
-import { InputLabel, Button, Box, Paper, Typography } from '@mui/material'
-import { Add } from '@mui/icons-material'
-import { makeStyles } from '@mui/styles'
+import { Box, Paper, Typography } from '@mui/material'
 import UserAvatar from '../layout/UserAvatar'
-import useCreatePost from '../../hooks/post/CreatePost/useCreatePost'
-import createPostValidation from '../../validations/createPostValidation'
-import ErrorMessage from '../shared/ErrorMessage'
 import CreateComment from './comment/CreateComment'
 import CommentsList from './comment/CommentsList'
-import { Post } from '../../types/post/Post'
-const Post = ({ post }): React.FC<{ posts: Post[] }> => {
+import { type Post as TPost } from '../../types/post/Post'
+const Post = ({ post }: { post: TPost }): JSX.Element => {
   const { author, content, createdAt, comments } = post
 
   return (
@@ -25,23 +20,6 @@ const Post = ({ post }): React.FC<{ posts: Post[] }> => {
         <CreateComment post={post} />
         <CommentsList comments={comments} />
       </Box>
-
-      {/* {typeof formik.errors.content === 'string' && (
-        <ErrorMessage message={formik.errors.content} />
-      )}
-
-      {typeof error === 'string' && <ErrorMessage message={error} />}
-
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
-        <Button
-          disabled={isLoading || fieldError}
-          variant="contained"
-          color="primary"
-          startIcon={<Add />}
-          onClick={formik.handleSubmit}
-        >
-          Publicar
-        </Button> */}
     </Paper>
   )
 }
