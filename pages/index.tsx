@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect } from 'react'
 import AppLayout from '../components/layout/AppLayout'
 import CreatePost from '../components/post/CreatePost'
 import PostsList from '../components/post/PostsList'
@@ -8,14 +8,14 @@ import getPostsService from '../services/post/getPostsService'
 import usePostsListContext from '../hooks/post/usePostsListContext'
 import { PostsListContextProvider } from '../context/PostsListContext'
 const IndexPage = ({ posts: initialPosts }: PostsPageProps): JSX.Element => {
-  const { posts, onAddPost, setPosts } = usePostsListContext()
+  const { posts, setPosts } = usePostsListContext()
 
   useEffect(() => {
-    if (initialPosts) setPosts(initialPosts)
+    if (initialPosts !== null) setPosts(initialPosts)
   }, [initialPosts])
 
   return (
-    <AppLayout title="Home | Next.js + TypeScript Example">
+    <AppLayout title="Confess Box ">
       <CreatePost />
       <PostsList posts={posts} />
     </AppLayout>

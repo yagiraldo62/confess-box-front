@@ -4,8 +4,8 @@ import { type Post, type Comment } from '../types/Post'
 interface PostsListContextProps {
   posts: Post[]
   setPosts: React.Dispatch<React.SetStateAction<Post[]>>
-  onAddPost: React.Dispatch<React.SetStateAction<Post[]>>
-  onAddComment: React.Dispatch<React.SetStateAction<Post[]>>
+  onAddPost: (post: Post) => void
+  onAddComment: (postId: number, comment: Comment) => void
 }
 
 export const PostsListContext = createContext<PostsListContextProps>({
