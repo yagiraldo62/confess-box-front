@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import createCommentService from '../../services/post/createCommentService'
-import { type CreateComment } from '../../types/Comment'
+import { type CreateComment, type Comment } from '../../types/Post'
 
 interface UseCreateCommentResult {
-  createComment: (post: CreateComment) => Promise<void>
+  createComment: (post: CreateComment) => Promise<Comment>
   isLoading: boolean
   error: string | null
 }
@@ -12,7 +12,7 @@ const useCreateComment = (): UseCreateCommentResult => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
 
-  const createComment = async (comment: CreateComment): Promise<void> => {
+  const createComment = async (comment: CreateComment): Promise<Comment> => {
     setIsLoading(true)
 
     try {
@@ -23,9 +23,8 @@ const useCreateComment = (): UseCreateCommentResult => {
       setIsLoading(false)
       console.error({ error })
       setError(error.message)
+      throw error
     }
-
-    setIsLoading(false)
   }
 
   return {

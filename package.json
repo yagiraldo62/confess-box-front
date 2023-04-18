@@ -18,7 +18,8 @@
     "type-check": "tsc",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx . --fix",
     "prettier": "prettier --write .",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "test": "jest --watch"
   },
   "dependencies": {
     "@emotion/cache": "^11.10.7",
@@ -44,6 +45,7 @@
     "react-dom": "^18.2.0",
     "react-google-login": "^5.2.2",
     "react-redux": "^8.0.5",
+    "redux-mock-store": "^1.5.4",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.2",
     "yarn": "^1.22.19",
@@ -55,6 +57,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.6.1",
     "@commitlint/config-conventional": "^17.6.1",
+    "@testing-library/jest-dom": "^5.16.5",
     "@types/node": "^12.12.21",
     "@types/react": "18.0.0",
     "@types/react-dom": "^17.0.1",
@@ -68,6 +71,8 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.32.2",
     "husky": "^8.0.3",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
     "sass": "^1.62.0",
     "typescript": "*"
   }
