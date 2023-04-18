@@ -39,7 +39,7 @@ export const getStaticProps: GetStaticProps<PostsPageProps> = async (
 
 export default function IndexPageWithPostsProvider (
   props: PostsPageProps
-): React.FC<PostsPageProps> {
+): JSX.Element {
   return (
     <PostsListContextProvider>
       <IndexPage {...props} />

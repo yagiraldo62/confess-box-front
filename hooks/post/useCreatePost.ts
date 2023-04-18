@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import createPostService from '../../services/post/createPostService'
-import { type CreatePost } from '../../types/Post'
+import { type Post, type CreatePost } from '../../types/Post'
 
 interface UseCreatePostResult {
-  createPost: (post: CreatePost) => Promise<void>
+  createPost: (post: CreatePost) => Promise<Post>
   isLoading: boolean
   error: string | null
 }
@@ -12,7 +12,7 @@ const useCreatePost = (): UseCreatePostResult => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
 
-  const createPost = async (post: CreatePost): Promise<void> => {
+  const createPost = async (post: CreatePost): Promise<Post> => {
     setIsLoading(true)
 
     try {
@@ -21,11 +21,10 @@ const useCreatePost = (): UseCreatePostResult => {
       return createdPost
     } catch (error) {
       setIsLoading(false)
-      console.error({ error })
       setError(error.message)
+      console.error({ error })
+      throw error
     }
-
-    setIsLoading(false)
   }
 
   return {

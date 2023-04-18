@@ -21,7 +21,7 @@ interface PostsListContextProviderProps {
 
 export const PostsListContextProvider = ({
   children
-}: PostsListContextProviderProps) => {
+}: PostsListContextProviderProps): JSX.Element => {
   const [posts, setPosts] = useState<Post[]>([])
   const onAddPost = (post: Post) => {
     setPosts([post, ...posts])

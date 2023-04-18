@@ -83,7 +83,7 @@ const CreatePost = (): JSX.Element => {
           variant="contained"
           color="primary"
           startIcon={isLoading ? <CircularProgress size={18} /> : <Add />}
-          onClick={formik.handleSubmit}
+          onClick={() => formik.handleSubmit()}
         >
           Publicar
         </Button>
